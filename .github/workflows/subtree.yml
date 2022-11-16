@@ -15,4 +15,4 @@ jobs:
           fetch-depth: 0
       - name: foo
         run: |
-          git subtree push --prefix=packages/common https://${{ secrets.PERSONAL_GITHUB_TOKEN}}@github.com/franklinkim/git-subtree-poc-common.git fork/project-a
+          git subtree push --prefix=packages/common https://franklinkim:${{ secrets.PERSONAL_GITHUB_TOKEN }}@github.com/franklinkim/git-subtree-poc-common.git fork/project-a
