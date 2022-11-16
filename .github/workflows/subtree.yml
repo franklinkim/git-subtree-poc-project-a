@@ -1,0 +1,19 @@
+name: subtree
+
+on: 
+  push:
+    branches:
+      - "main"
+
+jobs:
+  push:
+    name: Push subtrees
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git subtree push --prefix=packages/common git@github.com:franklinkim/git-subtree-poc-common.git fork/project-a
