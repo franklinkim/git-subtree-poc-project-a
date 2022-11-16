@@ -13,7 +13,6 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - env: 
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+      - name: foo
         run: |
-          git subtree push --prefix=packages/common git@github.com:franklinkim/git-subtree-poc-common.git fork/project-a
+          git subtree push --prefix=packages/common https://${{ secrets.PERSONAL_GITHUB_TOKEN}}@github.com/franklinkim/git-subtree-poc-common.git fork/project-a
