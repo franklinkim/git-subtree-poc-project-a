@@ -5,15 +5,15 @@ on:
     branches:
       - "main"
 
-permissions: 
-  contents: write
-
 jobs:
   push:
     name: Push subtrees
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: foo
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+      - name: packages-common
         run: |
-          git subtree push --prefix=packages/common https://x-access-token:${{ secrets.ACCESS_TOKEN }}@github.com/franklinkim/git-subtree-poc-common.git fork/project-a
+          git remote add packages-common --no-tags https://github.com/franklinkim/git-subtree-poc-common.git
+          git subtree push --prefix=packages/common packages-common fork/project-a
