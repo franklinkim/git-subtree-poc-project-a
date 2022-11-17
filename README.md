@@ -22,7 +22,7 @@ $ git subtree split --prefix=packages/common --branch subtree/packages-common
 $ rm -rf packages/common
 $ git add .
 $ git commit -m "removed common package"
-$ git subtree add --prefix=packages/common git@github.com:franklinkim/git-subtree-poc-common.git fork/project-a
+$ git subtree add --prefix=packages/common git@github.com:franklinkim/git-subtree-poc-common.git fork/ project-a --squash
 ```
 
 Manually push changes

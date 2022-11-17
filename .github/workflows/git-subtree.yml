@@ -1,0 +1,30 @@
+name: Git subtree
+
+on: 
+  push:
+    branches: [main]
+
+
+jobs:
+  push:
+    name: Sync git subtrees
+    runs-on: ubuntu-latest
+    env:
+      REMOTE_REPO: franklinkim/git-subtree-poc-common
+      REMOTE_BRANCH: fork/project-a
+    steps:
+      - id: app-token-provider
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: ${{ secrets.ACCESS_TOKEN_APP_ID }}
+          private_key: ${{ secrets.ACCESS_TOKEN_APP_PRIVATE_KEY }}
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ steps.app-token-provider.outputs.token }}
+          fetch-depth: 0
+      - name: Configure git
+        run: |
+          git remote add subtree-origin --no-tags https://github.com/${{ env.REMOTE_REPO }}.git
+      - name: Git subtree push
+        run: |
+          git subtree push --prefix=packages/common subtree-origin ${{ env.REMOTE_BRANCH }}
