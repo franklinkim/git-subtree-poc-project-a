@@ -25,7 +25,7 @@ $ git commit -m "removed common package"
 $ git subtree add --prefix=packages/common git@github.com:franklinkim/git-subtree-poc-common.git fork/project-a
 ```
 
-Push changes
+Manually push changes
 
 ```bash
 $ git subtree push --prefix=packages/common git@github.com:franklinkim/git-subtree-poc-common.git fork/project-a
